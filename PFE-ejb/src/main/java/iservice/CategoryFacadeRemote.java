@@ -16,7 +16,7 @@ import javax.ejb.Remote;
 @Remote
 public interface CategoryFacadeRemote {
 
-    public long create(Category category);
+    void create(Category category);
 
     void edit(Category category);
 
