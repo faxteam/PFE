@@ -40,9 +40,8 @@ public class Employee implements Serializable {
     @JoinColumn(name = "Id_employe_departement")
     private Departement departement;
 
-    @ManyToOne
-    @JoinColumn(name = "Id_Category")
-    private Category category;
+    @ManyToMany
+    private List<Category> category;
 
     @ManyToMany
     private List<Form> forms;
@@ -118,13 +117,14 @@ public class Employee implements Serializable {
         this.departement = departement;
     }
 
-    public Category getCategory() {
+    public List<Category> getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(List<Category> category) {
         this.category = category;
     }
+
 
     public List<Form> getForms() {
         return forms;

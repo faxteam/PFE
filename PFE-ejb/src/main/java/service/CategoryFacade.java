@@ -5,6 +5,7 @@
  */
 package service;
 
+import Facade.AbstractFacade;
 import entities.Category;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,52 +18,23 @@ import java.util.List;
  * @author Xandrayice
  */
 @Stateless
-public class CategoryFacade implements CategoryFacadeRemote {
+public class CategoryFacade extends AbstractFacade<Category> implements CategoryFacadeRemote {
 
     @PersistenceContext(unitName = "pfe-ejb")
     private EntityManager em;
 
+    @Override
     protected EntityManager getEntityManager() {
         return em;
     }
 
+    public CategoryFacade() {
+        super(Category.class);
+    }
+
    
 
-    @Override
-    public long create(Category category) {
-        em.persist(category);
-        return category.getCategory_id();
-    }
+   
 
-    @Override
-    public void edit(Category category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void remove(Category category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Category find(Object id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Category> findRange(int[] range) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int count() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Category> findAll() {
-        List<Category> categories = em.createQuery("from Category",Category.class).getResultList();
-        return categories;
-        
-    }
+    
 }
