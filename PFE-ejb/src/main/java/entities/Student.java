@@ -17,7 +17,7 @@ public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String student_id;
+    private long student_id;
 
     private String ident;
     
@@ -47,11 +47,11 @@ public class Student implements Serializable {
         super();
     }
 
-    public String getStudent_id() {
+    public long getStudent_id() {
         return student_id;
     }
 
-    public void setStudent_id(String student_id) {
+    public void setStudent_id(long student_id) {
         this.student_id = student_id;
     }  
 
