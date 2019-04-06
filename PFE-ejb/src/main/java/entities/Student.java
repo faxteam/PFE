@@ -17,8 +17,10 @@ public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long student_id;
+    private String student_id;
 
+    private String ident;
+    
     private int credit;
 
     private String firstName;
@@ -45,11 +47,11 @@ public class Student implements Serializable {
         super();
     }
 
-    public long getStudent_id() {
+    public String getStudent_id() {
         return student_id;
     }
 
-    public void setStudent_id(long student_id) {
+    public void setStudent_id(String student_id) {
         this.student_id = student_id;
     }  
 
@@ -123,6 +125,21 @@ public class Student implements Serializable {
 
     public void setNotifications(List<Notification> notifications) {
         this.notifications = notifications;
+    }
+
+    public String getIdent() {
+        return ident;
+    }
+
+    public void setIdent(String ident) {
+        this.ident = ident;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        return "Student{" + "student_id=" + student_id + ", credit=" + credit + ", firstName=" + firstName + ", lastName=" + lastName + ", personalEmail=" + personalEmail + ", professionalEmail=" + professionalEmail + ", password=" + password + ", notifications=" + notifications + ", classe=" + classe + ", form=" + form + '}';
     }
 
 }
