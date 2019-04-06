@@ -19,6 +19,8 @@ public class Site implements Serializable {
 
     private String name;
 
+    private String address;
+    
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "school_id")
     private School school;
@@ -49,6 +51,19 @@ public class Site implements Serializable {
 
     public void setSchool(School school) {
         this.school = school;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Site{" + "site_id=" + site_id + ", name=" + name + ", address=" + address + ", school=" + school + '}';
     }
 
 }

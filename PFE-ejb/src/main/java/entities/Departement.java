@@ -27,6 +27,11 @@ public class Departement implements Serializable {
 
     @OneToMany(mappedBy = "departement", cascade = CascadeType.REMOVE)
     private List<Employee> employees;
+    
+    
+    @OneToOne
+    @JoinColumn(name="employee_id")
+    private Employee chef;
 
     public Departement() {
         super();
@@ -62,6 +67,19 @@ public class Departement implements Serializable {
 
     public void setEmployees(List<Employee> employees) {
         this.employees = employees;
+    }
+
+    public Employee getChef() {
+        return chef;
+    }
+
+    public void setChef(Employee chef) {
+        this.chef = chef;
+    }
+
+    @Override
+    public String toString() {
+        return "Departement{" + "departement_id=" + departement_id + ", department_name=" + department_name + ", site=" + site + ", employees=" + employees + ", chef=" + chef + '}';
     }
 
 }

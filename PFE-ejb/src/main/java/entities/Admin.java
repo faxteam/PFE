@@ -87,6 +87,11 @@ public class Admin implements Serializable {
 	public void setSchool(School school) {
 		this.school = school;
 	}
+
+    @Override
+    public String toString() {
+        return "Admin{" + "admin_id=" + admin_id + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + ", login=" + login + ", password=" + password + ", school=" + school + '}';
+    }
    
 	
 }
