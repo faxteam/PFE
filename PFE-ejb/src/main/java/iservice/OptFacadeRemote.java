@@ -5,6 +5,7 @@
  */
 package iservice;
 
+import entities.Departement;
 import entities.Opt;
 import java.util.List;
 import javax.ejb.Remote;
@@ -29,5 +30,7 @@ public interface OptFacadeRemote {
     List<Opt> findRange(int[] range);
 
     int count();
+    public List<Opt> findByDepartement(Departement departement);
+    public boolean UniqueSite(Opt option);
     
 }

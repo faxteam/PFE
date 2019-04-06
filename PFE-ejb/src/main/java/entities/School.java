@@ -19,6 +19,8 @@ public class School implements Serializable {
     private Long school_id;
 
     private String name;
+    private String website;
+    private String address;
 
     public School() {
         super();
@@ -38,6 +40,27 @@ public class School implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "School{" + "school_id=" + school_id + ", name=" + name + ", website=" + website + ", address=" + address + '}';
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package iservice;
 
+import entities.Departement;
 import entities.Employee;
 import java.util.List;
 import javax.ejb.Remote;
@@ -29,5 +30,11 @@ public interface EmployeeFacadeRemote {
     List<Employee> findRange(int[] range);
 
     int count();
+    
+    public Boolean uniqueEmployee(Employee employee);
+    
+    public List<Employee> findByDepartement(Departement dep);
+
+    public List<Employee> findByRole(Employee.Role role);
     
 }

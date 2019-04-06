@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import iservice.AdminFacadeRemote;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -30,5 +31,32 @@ public class AdminFacade extends AbstractFacade<Admin> implements AdminFacadeRem
     public AdminFacade() {
         super(Admin.class);
     }
-    
+
+    @Override
+    public boolean uniqueEmail(String email) {
+
+        Admin admin = new Admin();
+
+        try {
+            admin = (Admin) em.createQuery("SELECT E FROM Admin E Where E.email = :email")
+                    .setParameter("email", email.toLowerCase()).getSingleResult();
+            return false;
+        } catch (NoResultException ex) {
+            return true;
+        }
+    }
+
+    @Override
+    public boolean uniqueUsername(String username) {
+        Admin admin = new Admin();
+
+        try {
+            admin = (Admin) em.createQuery("SELECT E FROM Admin E Where E.login = :username")
+                    .setParameter("username", username.toLowerCase()).getSingleResult();
+            return false;
+        } catch (NoResultException ex) {
+            return true;
+        }
+    }
+
 }

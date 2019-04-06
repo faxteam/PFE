@@ -5,6 +5,7 @@
  */
 package iservice;
 
+import entities.School;
 import entities.Site;
 import java.util.List;
 import javax.ejb.Remote;
@@ -29,5 +30,11 @@ public interface SiteFacadeRemote {
     List<Site> findRange(int[] range);
 
     int count();
+    
+    public boolean UniqueSite(Site site);
+    
+    public List<Site> findBySchool(School school);
+    
+    public Site findByName(String name);
     
 }

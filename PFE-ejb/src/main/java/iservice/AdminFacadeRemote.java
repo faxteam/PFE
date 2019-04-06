@@ -30,4 +30,8 @@ public interface AdminFacadeRemote {
 
     int count();
     
+    boolean uniqueEmail(String email);
+    
+    boolean uniqueUsername(String username);
+    
 }

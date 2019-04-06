@@ -6,6 +6,9 @@
 package iservice;
 
 import entities.Departement;
+import entities.Employee;
+import entities.School;
+import entities.Site;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -30,4 +33,13 @@ public interface DepartementFacadeRemote {
 
     int count();
     
+    public List<Departement> findBySite(Site site);
+    
+    public List<Departement> findBySiteName(String site, School school);
+    
+    public Boolean uniqueDepartement(String name);
+    
+    public Departement findByName(String name);
+    
+    public List<Departement> findByChefNull(Site site);
 }
