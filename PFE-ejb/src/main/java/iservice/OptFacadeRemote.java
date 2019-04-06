@@ -32,5 +32,6 @@ public interface OptFacadeRemote {
     int count();
     public List<Opt> findByDepartement(Departement departement);
     public boolean UniqueSite(Opt option);
+    public List<Opt> findByName(String name);
     
 }

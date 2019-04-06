@@ -6,6 +6,7 @@
 package iservice;
 
 import entities.Classe;
+import entities.Opt;
 import java.util.List;
 import javax.ejb.Remote;
 
@@ -29,5 +30,11 @@ public interface ClassFacadeRemote {
     List<Classe> findRange(int[] range);
 
     int count();
+    
+    public boolean uniqueClass(Classe cl);
+    
+    public List<Classe> findClassByName(String name);
+    
+    public List<Classe> findClassByOption(Opt option);
     
 }

@@ -51,4 +51,9 @@ public class Classe implements Serializable {
         this.option = option;
     }
 
+    @Override
+    public String toString() {
+        return  name;
+    }
+
 }

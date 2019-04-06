@@ -30,4 +30,6 @@ public interface StudentFacadeRemote {
 
     int count();
     
+    public boolean uniqueStundet(Student student);
+    
 }

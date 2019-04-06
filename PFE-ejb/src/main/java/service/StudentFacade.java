@@ -11,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import iservice.StudentFacadeRemote;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -29,6 +30,21 @@ public class StudentFacade extends AbstractFacade<Student> implements StudentFac
 
     public StudentFacade() {
         super(Student.class);
+    }
+
+    @Override
+    public boolean uniqueStundet(Student student) {
+        Student studentExist = new Student();
+
+        try {
+            studentExist = (Student) em.createQuery("SELECT S FROM Student S Where S.professionalEmail = :email AND S.ident = :id")
+                    .setParameter("email", student.getProfessionalEmail().toLowerCase())
+                    .setParameter("id", student.getIdent().toLowerCase())
+                    .getSingleResult();
+            return false;
+        } catch (NoResultException ex) {
+            return true;
+        }
     }
     
 }
