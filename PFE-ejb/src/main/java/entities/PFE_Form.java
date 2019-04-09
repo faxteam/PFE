@@ -2,8 +2,15 @@ package entities;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import javax.persistence.*;
+
 
 /**
  * Entity implementation class for Entity: PFE_Form
@@ -36,15 +43,15 @@ public class PFE_Form extends Form {
     //take the wheel ok je reve ou il nest pas entrain de le lancer? att je regarder
     // je te pose une question. as tu dans ta base de donnnee une table qui porte le meme nom
     @OneToOne
-    @JoinColumn(name = "employee_id", insertable = false, updatable = false)
+    @JoinColumn(name = "supervisor")
     private Employee supervisor;
 
     @OneToOne
-    @JoinColumn(name = "employee_id", insertable = false, updatable = false)
+    @JoinColumn(name = "reporter")
     private Employee reporter;
 
     @OneToOne
-    @JoinColumn(name = "employee_id", insertable = false, updatable = false)
+    @JoinColumn(name = "president")
     private Employee president;
 
     @Temporal(TemporalType.DATE)
@@ -54,7 +61,7 @@ public class PFE_Form extends Form {
     private Date modifiedOn;
 
     @OneToOne
-    @JoinColumn(name = "evaluation_id", insertable = false, updatable = false)
+    @JoinColumn(name = "evaluation_id")
     private Evaluation evaluation;
 
     public PFE_Form() {

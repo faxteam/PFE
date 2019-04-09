@@ -7,6 +7,7 @@ package service;
 
 import Facade.AbstractFacade;
 import entities.Admin;
+import entities.Employee;
 import entities.MailServer;
 import iservice.MailServerFacadeLocal;
 import javax.ejb.Stateless;
@@ -48,6 +49,20 @@ public class MailServerFacade extends AbstractFacade<MailServer> implements Mail
        
         
         
+    }
+
+    @Override
+    public MailServer findByMailerEmployee(Employee employee) {
+        MailServer mailer = new MailServer();
+        
+        try{
+             mailer = (MailServer) em.createQuery("Select M From MailServer M Where M.mailerEmployee = :employee")
+                .setParameter("employee", employee).getSingleResult();
+             return mailer;
+        }catch(NoResultException ex)
+        {
+            return new MailServer();
+        }
     }
     
     

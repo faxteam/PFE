@@ -2,8 +2,18 @@ package entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import javax.persistence.*;
+
 
 /**
  * Entity implementation class for Entity: Departement
@@ -23,16 +33,11 @@ public class Departement implements Serializable {
 
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "site_id")
-    private Site site;
-
+    private Site site;    
+    
     @OneToMany(mappedBy = "departement", cascade = CascadeType.REMOVE)
     private List<Employee> employees;
     
-    
-    @OneToOne
-    @JoinColumn(name="employee_id")
-    private Employee chef;
-
     public Departement() {
         super();
     }
@@ -69,17 +74,13 @@ public class Departement implements Serializable {
         this.employees = employees;
     }
 
-    public Employee getChef() {
-        return chef;
-    }
-
-    public void setChef(Employee chef) {
-        this.chef = chef;
-    }
-
     @Override
     public String toString() {
-        return "Departement{" + "departement_id=" + departement_id + ", department_name=" + department_name + ", site=" + site + ", employees=" + employees + ", chef=" + chef + '}';
+        return "Departement{" + "departement_id=" + departement_id + ", department_name=" + department_name + ", site=" + site + ", employees=" + employees + '}';
     }
+
+   
+
+   
 
 }

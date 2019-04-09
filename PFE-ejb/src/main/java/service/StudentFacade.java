@@ -6,12 +6,16 @@
 package service;
 
 import Facade.AbstractFacade;
+import entities.Classe;
 import entities.Student;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import iservice.StudentFacadeRemote;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -45,6 +49,23 @@ public class StudentFacade extends AbstractFacade<Student> implements StudentFac
         } catch (NoResultException ex) {
             return true;
         }
+    }
+
+    @Override
+    public List<Student> findListByClass(List<Classe> classes) {
+        
+        try {
+            System.out.println("try");
+            TypedQuery<Student> query = 
+                    (TypedQuery<Student>) em.
+                    createQuery("SELECT S FROM Student S GROUP BY S.classe HAVING S.classe IN (:classe)", Student.class)
+                    .setParameter("classe", classes);
+            List<Student> students = query.getResultList();
+            return students;
+        }catch(NoResultException ex){
+            return new ArrayList<>();
+        }
+        //return new ArrayList<Student>();
     }
     
 }

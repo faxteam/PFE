@@ -41,7 +41,7 @@ public class EmployeeFacade extends AbstractFacade<Employee> implements Employee
         Employee employeeExist = new Employee();
 
         try {
-            employeeExist = (Employee) em.createQuery("SELECT E FROM Employee E Where E.email = :email or E.login = :login", Employee.class)
+            employeeExist = (Employee) em.createQuery("SELECT E FROM Employee E Where E.email = :email or E.login = :login")
                     .setParameter("email", employee.getEmail().toLowerCase())
                     .setParameter("login", employee.getLogin().toLowerCase())
                     .getSingleResult();
@@ -55,7 +55,7 @@ public class EmployeeFacade extends AbstractFacade<Employee> implements Employee
     public List<Employee> findByDepartement(Departement dep) {
         try {
             TypedQuery<Employee> query =  (TypedQuery<Employee>) 
-                    em.createQuery("SELECT E FROM Employee E Where E.departement = :dep", Employee.class)
+                    em.createQuery("SELECT E FROM Employee E Where E.departement = :dep")
                     .setParameter("dep", dep);
             List<Employee> employees = query.getResultList();
             return employees;
@@ -69,13 +69,47 @@ public class EmployeeFacade extends AbstractFacade<Employee> implements Employee
     public List<Employee> findByRole(Employee.Role role) {
         try {
             TypedQuery<Employee> query =  (TypedQuery<Employee>) 
-                    em.createQuery("SELECT E FROM Employee E Where E.role = :role", Employee.class)
+                    em.createQuery("SELECT E FROM Employee E Where E.role = :role")
                     .setParameter("role", role);
             List<Employee> employees = query.getResultList();
             return employees;
             
         } catch (NoResultException ex) {
             return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public Departement findEmployeeDepartement(Employee employee) {
+        Departement departement = new Departement();
+        
+        try{
+            departement = (Departement) em.createQuery("SELECT E.departement FROM Employee E where E= :e")
+                    .setParameter("e", employee);
+            return departement;
+        }catch(NoResultException ex)
+        {
+            return new Departement();
+        }
+        
+    }
+
+    @Override
+    public void createNew(Employee employee) {
+        //em.saveOrUpdate(employee);
+    }
+
+    @Override
+    public Employee findByName(String name) {
+        Employee employeeExist = new Employee();
+
+        try {
+            employeeExist = (Employee) em.createQuery("SELECT E FROM Employee E Where E.email = :email ", Employee.class)
+                    .setParameter("email",name)
+                    .getSingleResult();
+            return employeeExist;
+        } catch (NoResultException ex) {
+            return new Employee();
         }
     }
 

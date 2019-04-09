@@ -29,5 +29,8 @@ public interface SchoolFacadeRemote {
     List<School> findRange(int[] range);
 
     int count();
+
+    public Long createNew(School schol);
+
     
 }

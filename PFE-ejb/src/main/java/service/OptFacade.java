@@ -39,7 +39,7 @@ public class OptFacade extends AbstractFacade<Opt> implements OptFacadeRemote {
     @Override
     public List<Opt> findByDepartement(Departement departement) {
         try {
-            TypedQuery<Opt> query = (TypedQuery<Opt>) em.createQuery("SELECT E FROM Opt E Where E.departement = :departement", Opt.class)
+            TypedQuery<Opt> query = (TypedQuery<Opt>) em.createQuery("SELECT E FROM Opt E Where E.departement = :departement")
                     .setParameter("departement", departement);
             List<Opt> options = query.getResultList();
             return options;
@@ -66,7 +66,7 @@ public class OptFacade extends AbstractFacade<Opt> implements OptFacadeRemote {
     @Override
     public List<Opt> findByName(String name) {
         try {
-            TypedQuery<Opt> query = (TypedQuery<Opt>) em.createQuery("SELECT E FROM Opt E Where E.name = :name", Opt.class)
+            TypedQuery<Opt> query = (TypedQuery<Opt>) em.createQuery("SELECT E FROM Opt E Where E.name = :name")
                     .setParameter("name", name);
             List<Opt> options = query.getResultList();
             return options;

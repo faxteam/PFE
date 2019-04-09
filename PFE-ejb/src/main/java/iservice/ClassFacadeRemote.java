@@ -6,6 +6,7 @@
 package iservice;
 
 import entities.Classe;
+import entities.Departement;
 import entities.Opt;
 import java.util.List;
 import javax.ejb.Remote;
@@ -36,5 +37,8 @@ public interface ClassFacadeRemote {
     public List<Classe> findClassByName(String name);
     
     public List<Classe> findClassByOption(Opt option);
+    
+    
+    public List<Classe> findClassByDepartement(Departement departement);
     
 }

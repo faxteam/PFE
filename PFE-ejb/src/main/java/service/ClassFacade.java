@@ -7,6 +7,7 @@ package service;
 
 import Facade.AbstractFacade;
 import entities.Classe;
+import entities.Departement;
 import entities.Opt;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -68,6 +69,19 @@ public class ClassFacade extends AbstractFacade<Classe> implements ClassFacadeRe
         try {
             TypedQuery<Classe> query = (TypedQuery<Classe>) em.createQuery("SELECT E FROM Classe E Where E.option = :option", Classe.class)
                     .setParameter("option", option);
+            List<Classe> classes = query.getResultList();
+            return classes;
+
+        } catch (NoResultException ex) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<Classe> findClassByDepartement(Departement departement) {
+         try {
+            TypedQuery<Classe> query = (TypedQuery<Classe>) em.createQuery("SELECT E FROM Classe E Where E.option.departement = :departement", Classe.class)
+                    .setParameter("departement", departement);
             List<Classe> classes = query.getResultList();
             return classes;
 

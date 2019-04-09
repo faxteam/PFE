@@ -5,6 +5,7 @@
  */
 package iservice;
 
+import entities.Classe;
 import entities.Student;
 import java.util.List;
 import javax.ejb.Remote;
@@ -31,5 +32,8 @@ public interface StudentFacadeRemote {
     int count();
     
     public boolean uniqueStundet(Student student);
+    
+    public List<Student> findListByClass(List<Classe> classes);
+   
     
 }

@@ -38,18 +38,22 @@ public class AutheticatorService implements AutheticatorInterfaceRemote {
         try {
             employee = (Employee) em.createQuery("SELECT E FROM Employee E Where E.login = :login")
                     .setParameter("login", username).getSingleResult();
+
+            try {
+                employee = (Employee) em.createQuery("SELECT E FROM Employee E Where E.login = :login AND E.password = :pwd")
+                        .setParameter("login", username).setParameter("pwd", password).getSingleResult();
+            } catch (NoResultException ex) {
+                Employee Error = new Employee();
+                Error.setEmail("*");
+                return Error;
+            }
+
         } catch (NoResultException ex) {
-            employee.setEmployee_id(0L);
-            return employee;
+            Employee Error = new Employee();
+            Error.setEmail("-");
+            return Error;
         }
 
-        try {
-            employee = (Employee) em.createQuery("SELECT E FROM Employee E Where E.login = :login AND E.password = :pwd")
-                    .setParameter("login", username).setParameter("pwd", password).getSingleResult();
-        } catch (NoResultException ex) {
-            employee.setEmployee_id(-1L);
-            return employee;
-        }
         return employee;
     }
 
@@ -65,7 +69,7 @@ public class AutheticatorService implements AutheticatorInterfaceRemote {
                 admin = (Admin) em.createQuery("SELECT E FROM Admin E Where E.login = :login AND E.password = :pwd")
                         .setParameter("login", username).setParameter("pwd", password).getSingleResult();
             } catch (NoResultException ex) {
-                 Admin Error = new Admin();
+                Admin Error = new Admin();
                 Error.setEmail("*");
                 return Error;
             }

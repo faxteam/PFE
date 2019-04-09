@@ -5,6 +5,7 @@
  */
 package iservice;
 
+import entities.Departement;
 import entities.PFE_Form;
 import java.util.List;
 import javax.ejb.Remote;
@@ -29,5 +30,7 @@ public interface PFE_FormFacadeRemote {
     List<PFE_Form> findRange(int[] range);
 
     int count();
+    
+    public PFE_Form findById(Long id);
     
 }

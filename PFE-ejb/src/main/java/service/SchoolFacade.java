@@ -30,5 +30,11 @@ public class SchoolFacade extends AbstractFacade<School> implements SchoolFacade
     public SchoolFacade() {
         super(School.class);
     }
+
+    @Override
+    public Long createNew(School schol) {
+        em.persist(schol);
+        return schol.getSchool_id();
+    }
     
 }
