@@ -34,6 +34,10 @@ public class MailServer implements Serializable {
     @JoinColumn(name = "admin_id")
     private Admin mailer;
     
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "employee_id")
+    private Employee mailerEmployee;
+    
     public int getId() {
         return id;
     }
@@ -87,6 +91,15 @@ public class MailServer implements Serializable {
         return true;
     }
 
+    public Employee getMailerEmployee() {
+        return mailerEmployee;
+    }
+
+    public void setMailerEmployee(Employee mailerEmployee) {
+        this.mailerEmployee = mailerEmployee;
+    }
+
+    
     @Override
     public String toString() {
         return "MailServer{" + "id=" + id + ", email=" + email + ", password=" + password + ", mailer=" + mailer + '}';

@@ -30,11 +30,16 @@ public interface EmployeeFacadeRemote {
     List<Employee> findRange(int[] range);
 
     int count();
-    
+
     public Boolean uniqueEmployee(Employee employee);
-    
+
     public List<Employee> findByDepartement(Departement dep);
 
     public List<Employee> findByRole(Employee.Role role);
-    
+
+    public Departement findEmployeeDepartement(Employee employee);
+
+    public void createNew(Employee employee);
+    public Employee findByName(String name);
+
 }

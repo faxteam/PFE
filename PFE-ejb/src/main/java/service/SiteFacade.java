@@ -56,7 +56,7 @@ public class SiteFacade extends AbstractFacade<Site> implements SiteFacadeRemote
     public List<Site> findBySchool(School school) {
         
         try {
-            TypedQuery<Site> query =  (TypedQuery<Site>) em.createQuery("SELECT E FROM Site E Where E.school = :school", Site.class)
+            TypedQuery<Site> query =  (TypedQuery<Site>) em.createQuery("SELECT E FROM Site E Where E.school = :school")
                     .setParameter("school", school);
             List<Site> sites = query.getResultList();
             return sites;

@@ -1,8 +1,11 @@
 package entities;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import javax.persistence.*;
 
 /**
  * Entity implementation class for Entity: ConventionForm

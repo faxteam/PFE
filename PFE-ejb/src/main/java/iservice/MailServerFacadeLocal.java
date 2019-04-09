@@ -6,6 +6,7 @@
 package iservice;
 
 import entities.Admin;
+import entities.Employee;
 import entities.MailServer;
 import java.util.List;
 import javax.ejb.Remote;
@@ -32,5 +33,6 @@ public interface MailServerFacadeLocal {
     int count();
     
     MailServer findByMailer(Admin admin);
+    MailServer findByMailerEmployee(Employee employee);
     
 }
