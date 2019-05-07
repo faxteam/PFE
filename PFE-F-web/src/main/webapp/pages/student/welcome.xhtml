@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                template="/template/template.xhtml">
+         
+         <ui:define name="head">
+         	<f:metadata>
+		        <f:event type="preRenderView" listener="#{loginBean.doRedirectToHomePage()}"/>
+		    </f:metadata>
+         </ui:define>       
+    <ui:param name="page_name" value="Accueil" />
+    <ui:define name="content">
+        <h:panelGroup>
+            <h:form>
+                <h:outputText value="Student #{loginBean.student.professionalEmail}" />  
+                <h:outputFormat value=" Bonjour!">
+                    <f:param value="#{loginBean.username}" />
+                </h:outputFormat> | 
+
+                <h:commandLink value="Déconnexion" action="#{loginBean.doLogout()}" />
+                <h:commandButton id="bb" action="#{loginBean.verifyLoggedIn()}" value="test" />
+            </h:form>
+        </h:panelGroup>
+    </ui:define>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script>
+	    $( document ).ready(function() {
+	        console.log( "ready!" );
+	    });
+	    $("#bb").click(function(){
+	    	 console.log( "clicked!" );
+		    });
+    </script>
+</ui:composition> 
+

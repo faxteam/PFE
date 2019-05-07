@@ -1,0 +1,188 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                template="/template/template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:param name="page_name" value="Accueil" />
+     <ui:define name="head">
+     	 <link rel="stylesheet" href="style.css" /> 
+     	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     </ui:define>
+    <ui:define name="content">
+    
+     <h:form>
+			<h:panelGroup>
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<h:commandButton class="btn btn-default" action="#{loginBean.doRedirectToHomePage()}" value="Home" />
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    		<ul class="navbar-nav mr-auto">
+				      		<li class="nav-item active">
+					        	<h:commandLink class="nav-link" style="margin-left : 500px" action="#{loginBean.doRedirectToHomePage()}" value="PFE Forms" />
+					      	</li>
+				      		
+					      	
+					      	<li class="nav-item">
+					        	<h:commandLink style="margin-left: 200px" class="nav-link" action="#{loginBean.doLogout()}" value="Logout" />
+					      	</li>
+					    </ul>
+			    	</div>
+				</nav>
+			</h:panelGroup>
+		</h:form>
+			<div class="container shadow-lg p-3 mb-5 bg-white rounded" style="border: 1px solid #ccc; margin-top: 20px;">
+                <div class="row">
+                    <div class="col-md-12" style="background-color: white; padding: 25px; margin-top: 40px; margin-bottom: 40px">
+                        
+                        <div class="row">
+	                        <div class="col-md-3">
+	                        	<h:graphicImage value="https://i.ibb.co/LdtpXwg/logo-Esprit.jpg" style="width: 200px" />
+	                        </div>
+	                        <div class="col-md-6"></div>
+	                        <div class="col-md-3">
+	                        	<h:outputText style="font-weight: 600" value="Year 2018-2019" />
+	                        </div>
+                        </div>
+                        
+                        
+                        <div class="row" style="margin-top:40px; margin-left: 25px">
+                        
+                        	<div class="col-md-12">
+	                        	<h:outputText style="font-weight: 600; font-size: 38px; display: block; margin-bottom:20px; text-align: center;" value="PFE Form" />
+	                        </div>
+	                        
+	                        <div class="col-md-3">
+	                        	<h:outputText style="font-weight: 600; font-size: 20px;" value="Student's information :" />
+	                        </div>
+	                        
+	                        <div class="col-md-9" style="margin-top: 20px">
+	                        
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="ID :" />
+		                        	<h:outputText style="font-size: 18px;" value=" #{directorBean.acceptedForm.student.ident}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Name :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.student.firstName} #{directorBean.acceptedForm.student.lastName}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Class :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.student.classe.name} ( #{directorBean.acceptedForm.student.classe.option.name} )" />
+	                        	</div>
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Email :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.student.professionalEmail}" />
+	                        	</div>
+	                        </div>
+	                        
+	                        <p:separator/>
+	                        
+	                        <div class="col-md-3">
+	                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Form's Details :" />
+	                        </div>
+	                        
+	                        <div class="col-md-9" style="; margin-top:20px">
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Title :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.title}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Problematic :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.problematic}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Functionalities :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.functionalities}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Description :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.description}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Category :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.category.category_name}" />
+	                        	</div>
+	                        	
+	                        </div>
+	                        
+	                        <p:separator/>
+	                        
+	                        <div class="col-md-3">
+	                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Corporation's Details :" />
+	                        </div>
+	                        
+	                        <div class="col-md-9" style="; margin-top:20px">
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Name :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.entreprise.name}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText styleClass="fas fa-map-marker-alt" style="font-weight: 600; font-size: 20px" value="  Adress :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.entreprise.adress}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText styleClass="fa fa-phone" style="font-weight: 600; font-size: 20px" value="  Phone Number :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.entreprise.phone}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText styleClass="fa fa-globe" style="font-weight: 600; font-size: 20px" value="  Website :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.entreprise.website}" />
+	                        	</div>
+	                        	
+	                        	<div class="form-group">
+		                        	<h:outputText style="font-weight: 600; font-size: 20px" value="Category :" />
+		                        	<h:outputText style="font-size: 18px" value=" #{directorBean.acceptedForm.category.category_name}" />
+	                        	</div>
+	                        	
+	                        	
+	                        	
+	                        	<div class="form-group">
+	                        	<h:commandButton value="Launch demo modal" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+								  Grade
+								</h:commandButton>
+								
+								<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModalLabel">Grade</h5>
+								        <h:commandButton class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">X</span>
+								        </h:commandButton>
+								      </div>
+								      <div class="modal-body">
+								        ...
+								      </div>
+								      <div class="modal-footer">
+								        
+								      </div>
+								    </div>
+								  </div>
+								</div>
+	                        	</div>
+	                        	
+	                        </div>
+	                        
+                        </div>
+                        
+                        
+                        
+                    </div>
+                    <div class="tab-content"></div>
+                </div>
+            </div>
+            
+    </ui:define>
+</ui:composition> 
+

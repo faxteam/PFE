@@ -1,0 +1,86 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                template="/template/template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:param name="page_name" value="Archived Forms" />
+    <ui:define name="content">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    	<h:commandButton action="#{loginBean.doRedirectToHomePage()}" class="btn btn-default" value="Home" />
+    	<div class="collapse navbar-collapse" style="display: block; margin: auto;" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+	      		<li class="nav-item">
+		        	<h:commandButton class="nav-link" action="#{directorBean.redirectToFormList()}" value="PFE Forms" />
+		      	</li>
+	      		<li class="nav-item  active">
+		        	<h:commandButton class="nav-link" action="#{directorBean.redirectToArchivedFormList()}" value="Archived PFE Forms" />
+		      	</li>
+		      	<li class="nav-item active">
+		        	<h:commandButton class="nav-link" action="#{loginBean.doRedirectToHomePage()}" value="Email students" />
+		      	</li>
+		    </ul>
+    	</div>
+    </nav>
+    
+        <h:panelGroup>
+            <h:form>
+                <h:outputText value="Employee  #{loginBean.employee.login}" />
+                <h:outputText value="   #{loginBean.employee.role}   " />   
+                <h:outputFormat value=" Bonjour!">
+                    <f:param value="#{loginBean.username}" />
+                </h:outputFormat> | 
+
+                <h:commandLink value="Déconnexion" action="#{loginBean.doLogout()}" />
+            </h:form>
+        </h:panelGroup>
+        
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+
+		<h:form>
+		<p:dataTable id="tbl" var="form" value="#{directorBean.forms}"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                 paginator="true" rows="10" style="margin-bottom:20px">
+                 
+                         <f:facet name="{Exporters}">
+            <div style="float:right;padding-top: 5px;">
+                <h:commandLink>
+                    <p:graphicImage value="xlsLogo.jpg" width="24"/>
+                    <p:dataExporter type="xls" target="tbl" fileName="forms" />
+                </h:commandLink>
+ 
+                <h:commandLink>
+                    <p:graphicImage value="logo-pdf.png" width="24"/>
+                    <p:dataExporter type="pdf" target="tbl" fileName="forms"/>
+                </h:commandLink>
+            </div>
+        </f:facet>
+		    <p:column headerText="Title">
+		        <h:outputText value="#{form.title}" />
+		    </p:column>
+		    
+		    <p:column headerText="Student">
+		        <h:outputText value="#{form.student.professionalEmail}" />
+		    </p:column>
+		    
+		    <p:column headerText="Class">
+		        <h:outputText value="#{form.student.classe.name}" />
+		    </p:column>
+		    
+		    <p:column headerText="Status">
+		        <h:outputText value="#{form.isAccepted()}" />
+		    </p:column>
+		    
+		    <p:column headerText="Created On">
+		        <h:outputText value="#{form.createdOn}" />
+		    </p:column>
+		    
+		     <p:column headerText="Action">
+		        <h:commandButton styleClass="btn btn-default fa fa-trash" value="Manage" />
+		    </p:column>
+		</p:dataTable>
+	</h:form>
+    </ui:define>
+</ui:composition> 
+

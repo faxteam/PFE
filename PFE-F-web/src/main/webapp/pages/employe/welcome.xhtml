@@ -1,0 +1,125 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" 
+                template="/template/template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:param name="page_name" value="Accueil" />
+     <ui:define name="head">
+     	 <link rel="stylesheet" href="style.css" /> 
+     	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+     </ui:define>
+    <ui:define name="content">
+    
+     <h:form>
+			<h:panelGroup>
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+					<h:commandButton class="btn btn-default" action="#{loginBean.doRedirectToHomePage()}" value="Home" />
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    		<ul class="navbar-nav mr-auto">
+				      		<li class="nav-item active">
+					        	<h:commandLink class="nav-link" style="margin-left : 500px" action="#{loginBean.doRedirectToHomePage()}" value="My PFE Forms" />
+					      	</li>
+				      		
+					      	<li class="nav-item">
+					        	<h:commandLink style="margin-left: 200px" class="nav-link" action="#{loginBean.doLogout()}" value="#{loginBean.employee.firstName} #{loginBean.employee.lastName} Logout"  />
+					      	</li>
+					    </ul>
+			    	</div>
+				</nav>
+			</h:panelGroup>
+		</h:form>
+
+
+			<div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-9" style="background-color: white; padding: 25px; margin-top: 40px; margin-bottom: 40px">
+                        <div class="form">
+                            
+                            <div class="tab-content">
+                                 <h:form>
+                                    <p:dataTable style="width : 100%" var="form" value="#{employeeBean.forms}">
+									    <p:column style="min-width: 150px; border : 1px solid #ccc" headerText="Title">
+									        <h:outputText value="#{form.title}" />
+									    </p:column>
+									    
+									    <p:column style="border : 1px solid #ccc; padding-left: 10px" headerText="Student">
+									        <h:outputText value="#{form.student.professionalEmail}" />
+									    </p:column>
+									    
+									    <p:column style="border : 1px solid #ccc; padding-left: 10px" headerText="Reporter Mark">
+									        <h:outputText value="#{form.note_reporter}" />
+									    </p:column>
+									    
+									    <p:column style="border : 1px solid #ccc; padding-left: 10px" headerText="Supervisor Mark">
+									        <h:outputText value="#{form.note_supervisor}" />
+									    </p:column>
+									    
+									    <p:column style="margin-left: 5px; min-width: 150px; border : 1px solid #ccc; padding-left: 10px" headerText="Class">
+									        <h:outputText value="#{form.student.classe.name}" />
+									    </p:column>
+									    
+									    <p:column headerText="Action" style="border : 1px solid #ccc">
+									        <h:commandButton value="Grade" action="#{employeeBean.acceptForm()}" class="btn btn-primary" >
+									        <f:setPropertyActionListener value="#{form}" target="#{employeeBean.acceptedForm}"></f:setPropertyActionListener>
+									        	
+									        </h:commandButton>
+									     </p:column>
+									</p:dataTable>
+									</h:form>
+                            </div>
+                            <!--  tab-content -->
+                        </div>
+                        <!--  /form -->
+                    </div>
+                    <div class="tab-content"></div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript" xml:space="preserve"></script> 
+            <script type="text/javascript" xml:space="preserve">
+	            $('.form').find('input, textarea').on('keyup blur focus', function (e) {
+	                var $this = $(this),
+	                        label = $this.prev('label');
+	
+	                if (e.type === 'keyup') {
+	                    if ($this.val() === '') {
+	                        label.removeClass('active highlight');
+	                    } else {
+	                        label.addClass('active highlight');
+	                    }
+	                } else if (e.type === 'blur') {
+	                    if ($this.val() === '') {
+	                        label.removeClass('active highlight');
+	                    } else {
+	                        label.removeClass('highlight');
+	                    }
+	                } else if (e.type === 'focus') {
+	
+	                    if ($this.val() === '') {
+	                        label.removeClass('highlight');
+	                    } else if ($this.val() !== '') {
+	                        label.addClass('highlight');
+	                    }
+	                }
+	
+	            });
+	
+	            $('.tab a').on('click', function (e) {
+	
+	                e.preventDefault();
+	                $(this).parent().addClass('active');
+	                $(this).parent().siblings().removeClass('active');
+	                var target = $(this).attr('href');
+	                $('.tab-content > div').not(target).hide();
+	                $(target).fadeIn(600);
+	
+	            });
+           	</script>
+    </ui:define>
+</ui:composition> 
+
